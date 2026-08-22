@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-08-22T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+  <diagram name="Pest Rover Circuit" id="pestRoverCircuit">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ============ ARDUINO BOARD ============ -->
+        <mxCell id="arduino" value="Arduino Board&#10;(runs Sketch.ino + Router Bridge)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="560" y="260" width="220" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- ============ LEFT SIDE: CAMERA / COMPANION COMPUTER ============ -->
+        <mxCell id="camera" value="USB Camera" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="companion" value="Companion Computer&#10;(runs app.py, ONNX model,&#10;Flask video server)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="220" width="200" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stream" value="Live Video Stream&#10;http://[ip]:5000/video" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_cam_companion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" edge="1" parent="1" source="camera" target="companion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_companion_stream" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;fontSize=11;" edge="1" parent="1" source="companion" target="stream">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_companion_arduino" value="Router Bridge&#10;(engage / test / startSearch / stop)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;fontSize=11;strokeColor=#b85450;" edge="1" parent="1" source="companion" target="arduino">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ RIGHT SIDE: PUMP / BUZZER / SERVO ============ -->
+        <mxCell id="relay" value="Relay Module" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="900" y="60" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pump" value="Water Pump" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="60" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_relay_pump" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="relay" target="pump">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_ard_relay" value="Pin 2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;" edge="1" parent="1" source="arduino" target="relay">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="90" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="buzzer" value="Buzzer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="900" y="160" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_ard_buzzer" value="Pin 3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;" edge="1" parent="1" source="arduino" target="buzzer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="servo" value="Aiming Servo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="900" y="260" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_ard_servo" value="Pin 4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;" edge="1" parent="1" source="arduino" target="servo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ MOTOR DRIVER + MOTORS ============ -->
+        <mxCell id="driver" value="Motor Driver Board&#10;(dual H-bridge)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="900" y="360" width="220" height="220" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_ard_in1" value="Pin 5 (IN1)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;exitX=1;exitY=0.55;entryX=0;entryY=0.15;" edge="1" parent="1" source="arduino" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ard_in2" value="Pin 6 (IN2)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;exitX=1;exitY=0.6;entryX=0;entryY=0.3;" edge="1" parent="1" source="arduino" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ard_ena" value="Pin 9 (ENA / speedPinL)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;exitX=1;exitY=0.65;entryX=0;entryY=0.45;" edge="1" parent="1" source="arduino" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ard_in3" value="Pin 7 (IN3)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;exitX=1;exitY=0.7;entryX=0;entryY=0.6;" edge="1" parent="1" source="arduino" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ard_in4" value="Pin 8 (IN4)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;exitX=1;exitY=0.75;entryX=0;entryY=0.75;" edge="1" parent="1" source="arduino" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ard_enb" value="Pin 10 (ENB / speedPinR)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;fontStyle=1;exitX=1;exitY=0.8;entryX=0;entryY=0.9;" edge="1" parent="1" source="arduino" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leftMotor" value="Left Motor(s)&#10;(OUT1 / OUT2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="360" width="160" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rightMotor" value="Right Motor(s)&#10;(OUT3 / OUT4)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="500" width="160" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_driver_left" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="driver" target="leftMotor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_driver_right" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="driver" target="rightMotor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ POWER ============ -->
+        <mxCell id="power" value="Battery / Power Supply" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="760" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_power_driver" value="Motor power" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="power" target="driver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_power_relay" value="Pump power" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="power" target="relay">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_power_ard" value="5V / VIN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="power" target="arduino">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ NOTE / LEGEND ============ -->
+        <mxCell id="legend" value="Notes:&#10;- Pin numbers match Sketch.ino exactly (not changed).&#10;- Dashed lines = software / power links, not direct GPIO signal wires.&#10;- Motor driver shown generically (e.g. L298N-style dual H-bridge); match to your actual board's IN1-4/ENA/ENB labeling.&#10;- Verify relay and pump polarity before connecting power." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;align=left;verticalAlign=top;fontSize=11;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="480" width="360" height="140" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
